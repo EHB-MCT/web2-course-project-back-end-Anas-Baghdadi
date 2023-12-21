@@ -5,13 +5,16 @@ const { MongoClient } = require('mongodb');
 const cookieParser = require('cookie-parser');
 const { v4: uuidv4, validate: uuidValidate } = require('uuid');
 
+// Connect to MongoDB database
 const client = new MongoClient("mongodb+srv://login:test123@cluster0.ayowtk8.mongodb.net/?retryWrites=true&w=majority");
 
+// Middleware to handle POST data
 router.use(express.urlencoded({ extended: false }));
-router.use(cors());
+router.use(cors()); // CORS middleware for handling cross-origin requests
 router.use(express.json());
-router.use(cookieParser());
+router.use(cookieParser()); // Middleware to parse cookies
 
+// Endpoint to test MongoDB connection
 router.get("/testMongo", async (req, res) => {
     try {
         await client.connect();
@@ -29,6 +32,7 @@ router.get("/testMongo", async (req, res) => {
     }
 });
 
+// Endpoint for user registration
 router.post("/register", async (req, res) => {
     if (!req.body.username || !req.body.email || !req.body.password) {
         res.status(400).send({
@@ -64,6 +68,7 @@ router.post("/register", async (req, res) => {
     }
 });
 
+// Endpoint for user login
 router.post("/login", async (req, res) => {
     if (!req.body.email || !req.body.password) {
         res.status(400).send({
@@ -117,6 +122,7 @@ router.post("/login", async (req, res) => {
     }
 });
 
+// Endpoint to verify user UUID
 router.post("/verifyID", async (req, res) => {
     if (!req.body.uuid) {
         res.status(400).send({
@@ -166,6 +172,7 @@ router.post("/verifyID", async (req, res) => {
     }
 });
 
+// Endpoint to log out a user
 router.post('/logout', (req, res) => {
     res.clearCookie('session');
     res.send('Logout successful');
