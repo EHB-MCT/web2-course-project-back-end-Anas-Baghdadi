@@ -44,4 +44,17 @@ router.post("/", async (req, res) => {
   }
 });
 
+// GET route to retrieve all meals
+router.get("/meals", async (req, res) => {
+  const mealCollection = req.dbClient.db("mealPlanItems").collection("meals");
+
+  try {
+    const meals = await mealCollection.find({}).toArray();
+    res.status(200).json(meals);
+  } catch (error) {
+    console.error("Error retrieving meals from database:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 module.exports = router;
