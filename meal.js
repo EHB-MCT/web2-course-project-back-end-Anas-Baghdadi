@@ -23,4 +23,25 @@ mongoose
 router.use(cors());
 router.use(express.json());
 
+// POST route to add a meal
+router.post("/", async (req, res) => {
+  const { name, description, calories, userId } = req.body;
+
+  const mealCollection = req.dbClient.db("mealPlanItems").collection("meals");
+
+  try {
+    const result = await mealCollection.insertOne({
+      name: name,
+      description: description,
+      calories: calories,
+      userId: userId,
+    });
+
+    res.status(201).json({ success: true, mealId: result.insertedId });
+  } catch (error) {
+    console.error("Error adding meal to database:", error);
+    res.status(500).json({ success: false, error: "Internal Server Error" });
+  }
+});
+
 module.exports = router;
