@@ -60,6 +60,11 @@ process.on("SIGINT", async () => {
   }
 });
 
+//Root route
+app.get('/', (req, res) => {
+  res.status(300).redirect('/info.html');
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`App running at http://localhost:${port}`);
