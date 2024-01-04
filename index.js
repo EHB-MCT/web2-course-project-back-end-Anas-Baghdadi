@@ -7,11 +7,13 @@ require("dotenv").config();
 const loginRoute = require("./routes/login.js");
 const mealRoute = require("./routes/meal.js");
 
-app.use(express.static("public"));
 
 
 const app = express();
 const port = process.env.PORT || 4000;
+
+
+app.use(express.static("public"));
 
 const url =
   process.env.MONGODB_URI ||
