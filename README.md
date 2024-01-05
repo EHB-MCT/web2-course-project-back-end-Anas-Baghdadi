@@ -4,6 +4,9 @@
 
 Anas Baghdadi 
 
+front-end url: https://ehb-mct.github.io/web2-course-project-front-end-Anas-Baghdadi/
+back-end url: https://web-2-backend-jlcp.onrender.com/info.html
+
 ## MealMagic
 
 Mealmagic is a full-stack website that provides a seamless experience for managing your meals. Whether you're looking for a personalized meal plan, seeking recipe inspiration, or creating and saving your custom plans, Mealmagic has got you covered.
